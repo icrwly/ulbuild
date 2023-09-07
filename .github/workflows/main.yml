@@ -21,7 +21,7 @@ jobs:
       - name: Push Code to Destination Repository
         run: |
           git remote add destination https://$DESTINATION_GITHUB_USERNAME:$DESTINATION_REPO_PAT@github.com/$DESTINATION_GITHUB_USERNAME/$DESTINATION_REPO_NAME.git
-          git push destination develop
+          git push destination main
         env:
           DESTINATION_GITHUB_USERNAME: icrwly
           DESTINATION_REPO_PAT: ${{ secrets.DESTINATION_REPO_PAT }}
