@@ -1,21 +1,21 @@
-name: Push to Another Repo
-
+name: Build and Deploy Assets
 on:
   push:
-    branches:
-      - main
-
+    branches: develop
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
+    name: Deploy Assets
     steps:
-      - name: Checkout code
+      - name: Checkout the commit
         uses: actions/checkout@v2
 
-      - uses: GuillaumeFalourd/git-commit-push@v1.3
+      - name: Deploy
+        uses: manzoorwanijk/action-deploy-to-repo@master
         with:
-          target_branch: main
-          remote_repository: https://github.com/icrwly/ulsource.git
-          access_token: ${{secrets.IPC}}
-          force: true
+          src_dir: develop
+          target_owner: icrwly
+          target_repo: ulsource
+          target_branch: develop # default
+          # Optional
+          access_token: ${{ secrets.IPC }}
