@@ -15,6 +15,8 @@ jobs:
         with:
           target_owner: icrwly
           target_repo: ulsource
+          source_dir: .  # Use "." to specify the root directory of the source repository
+          target_dir: .  # Use "." to specify the root directory of the target repository
           target_branch: main # default
           # Optional
           access_token: ${{ secrets.IPC }}
