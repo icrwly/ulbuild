@@ -1,7 +1,7 @@
 name: Build and Deploy Assets
 on:
   push:
-    branches: develop
+    branches: main
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -13,9 +13,8 @@ jobs:
       - name: Deploy
         uses: manzoorwanijk/action-deploy-to-repo@master
         with:
-          src_dir: develop
           target_owner: icrwly
           target_repo: ulsource
-          target_branch: develop # default
+          target_branch: main # default
           # Optional
           access_token: ${{ secrets.IPC }}
