@@ -1,0 +1,28 @@
+name: Push to Another Repo
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Output DESTINATION_REPO_PAT
+        run: echo "DESTINATION_REPO_PAT is $DESTINATION_REPO_PAT"
+        env:
+          DESTINATION_REPO_PAT: ${{ secrets.DESTINATION_REPO_PAT }}
+
+      - name: Push Code to Destination Repository
+        run: |
+          git remote add destination https://$DESTINATION_GITHUB_USERNAME:$DESTINATION_REPO_PAT@github.com/$DESTINATION_GITHUB_USERNAME/$DESTINATION_REPO_NAME.git
+          git push destination develop
+        env:
+          DESTINATION_GITHUB_USERNAME: icrwly
+          DESTINATION_REPO_PAT: ${{ secrets.DESTINATION_REPO_PAT }}
+          DESTINATION_REPO_NAME: ulsource
