@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Output DESTINATION_REPO_PAT
-        run: echo "DESTINATION_REPO_PAT is $DESTINATION_REPO_PAT"
+        run: echo "IPC is $IPC"
         env:
           DESTINATION_REPO_PAT: ${{ secrets.IPC }}
 
