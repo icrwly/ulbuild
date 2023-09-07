@@ -16,7 +16,7 @@ jobs:
       - name: Output DESTINATION_REPO_PAT
         run: echo "DESTINATION_REPO_PAT is $DESTINATION_REPO_PAT"
         env:
-          DESTINATION_REPO_PAT: ${{ secrets.DESTINATION_REPO_PAT }}
+          DESTINATION_REPO_PAT: ${{ secrets.IPC }}
 
       - name: Push Code to Destination Repository
         run: |
