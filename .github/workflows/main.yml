@@ -25,4 +25,4 @@ jobs:
         env:
           DESTINATION_GITHUB_USERNAME: icrwly
           DESTINATION_REPO_PAT: ${{ secrets.DESTINATION_REPO_PAT }}
-          DESTINATION_REPO_NAME: ttnebraska
+          DESTINATION_REPO_NAME: ulsource
