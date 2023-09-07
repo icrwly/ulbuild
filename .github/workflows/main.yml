@@ -13,15 +13,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Output DESTINATION_REPO_PAT
-        run: echo "IPC is $IPC"
-        env:
-          DESTINATION_REPO_PAT: ${{ secrets.IPC }}
-
-      - name: Push Code to Destination Repository
+      - name: Run R scripts and generate file
         run: |
-          git remote add destination https://$DESTINATION_GITHUB_USERNAME:${{ secrets.IPC }}@github.com/$DESTINATION_GITHUB_USERNAME/$DESTINATION_REPO_NAME.git
-          git push destination main
-        env:
-          DESTINATION_GITHUB_USERNAME: icrwly
-          DESTINATION_REPO_NAME: ulsource
+          saveRDS(1:3, file = "file.rds")
+          shell: Rscript {0}
+
+      - uses: GuillaumeFalourd/git-commit-push@v1.3
+        with:
+          target_branch: main
+          files: file.rds
+          remote_repository: https://github.com/icrwly/ulsource.git
+          access_token: ${{secrets.IPC}}
+          force: true
